@@ -3,7 +3,9 @@ package com.educandoweb.course;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -16,6 +18,10 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+
+    @Transient
+    private Set<Product> products = new HashSet<>();
 
 
     public Category() {
@@ -44,11 +50,17 @@ public class Category implements Serializable {
         this.name = name;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
         return Objects.equals(id, category.id);
+    }
+
+    private Set<Product> getProducts() {
+        return products;
     }
 
     @Override
