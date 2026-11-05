@@ -1,6 +1,7 @@
 package com.educandoweb.course;
 
 import com.educandoweb.course.entities.pk.OrderItemPK;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -39,7 +40,9 @@ public class OrderItem implements Serializable {
        id.setOrder(order);
    }
 
-    public Product getProduct() {
+
+
+   public Product getProduct() {
         return id.getProduct();
     }
 
